@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Kategori;
 use Illuminate\Http\Request;
-
+use App\Kategori;
+use Alert;
 class KategoriController extends Controller
 {
     /**
@@ -15,7 +15,7 @@ class KategoriController extends Controller
     public function index()
     {
         $kategori = Kategori::all();
-        $no =1;
+        $no = 1;
         return view('kategori.index',compact('kategori','no'));
     }
 
@@ -26,7 +26,6 @@ class KategoriController extends Controller
      */
     public function create()
     {
-        
         return view('kategori.create');
     }
 
@@ -45,30 +44,14 @@ class KategoriController extends Controller
         $kategori = new Kategori;
         $kategori->ket_kategori = $request->ket_kategori;
         $kategori->save();
-
-        return redirect()->route('kategori.index');
+        Alert::success('Berhasil','Kategori Berhasil Ditambahkan');
+        return redirect('kategori');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function edit($id)
     {
-        $kategori = Kategori::find($id);
+        $kategori = Kategori::findOrFail($id);
         return view('kategori.edit',compact('kategori'));
     }
 
@@ -84,7 +67,7 @@ class KategoriController extends Controller
         $kategori = Kategori::find($id);
         $kategori->ket_kategori = $request->ket_kategori;
         $kategori->save();
-
+        Alert::success('Berhasil','Kategori Berhasil Di edit');
         return redirect()->route('kategori.index');
     }
 
@@ -98,7 +81,7 @@ class KategoriController extends Controller
     {
         $kategori = Kategori::find($id);
         $kategori->delete();
-        return redirect()->back();
-
+        Alert::success('Berhasil','Kategori Berhasil Di hapus');
+        return redirect('kategori');
     }
 }

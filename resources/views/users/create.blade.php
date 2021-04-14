@@ -37,7 +37,7 @@
 
       @section('content')
       <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-        <h1 class="h2">User Admin</h1>
+        <h1 class="h2">   <i class="fa fa-user" aria-hidden="true"></i> User Admin</h1>
         <div class="btn-toolbar mb-2 mb-md-0">
           <div class="btn-group me-2">
            
@@ -82,8 +82,8 @@
                
         <br>
 
-        <button type="submit" class="btn btn-primary">Submit</button>
-        <a href="{{ route('users.index') }}" class="btn btn-info">Kembali</a>
+        <a href="{{ route('users.index') }}" class="btn btn-info"><i class="fa fa-chevron-left" aria-hidden="true"></i>&nbsp;Kembali</a>
+        <button type="submit" class="btn btn-primary"><i class="fa fa-sign-in" aria-hidden="true" style="color:white;"></i>&nbsp;Submit</button>
       </form>
 
 

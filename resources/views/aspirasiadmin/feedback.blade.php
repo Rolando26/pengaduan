@@ -47,6 +47,12 @@
       <form class="form-horizontal" action="#">
         <div class="box-body table-responsive no-padding">
             <table class="table table-hover">
+
+              <tr>
+                <th>ID</th>
+                <th>{{ $aspirasi->id}}</th>
+              </tr>
+
               <tr>
                 <th>NIK</th>
                 <th>{{ $aspirasi->nik}}</th>
@@ -70,7 +76,10 @@
 
               <tr>
                 <th>Feedback</th>
-                <th>{{ $aspirasi->feedback}}</th>
+                <th>
+                  <th>{{ $aspirasi->feedback}}</th>
+                </th>
+                
         
               </tr>
 

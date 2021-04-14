@@ -8,6 +8,11 @@
       @csrf
       <table class="table table-stripped text-white">
         <tr>
+          <th>ID</th>
+          <th>{{ $aspirasi->id}}</th>
+        </tr>
+
+        <tr>
           <th>NIK</th>
           <th>{{ $aspirasi->nik}}</th>
         </tr>
@@ -29,23 +34,13 @@
         </tr>
 
         <tr>
-        @if($aspirasi->status == 'selesai')
-        <th>Feedback</th>
-        @if($aspirasi->feedback == 'puas')
-      
-          <th>Puas</th>
-
-          @elseif($aspirasi->feedback == 'tidakpuas')
-          <th>Tidak Puas</th>
+          @if($aspirasi->status == 'selesai' && $aspirasi->feedback == null)
+            <th>Feedback :</th> 
+            <th><input type="text" class="form-control" name="feedback"> </th>
 
           @else
-          <th>Beri Feedback:
-            <select name="feedback" class="form-control">
-              <option value="puas">Puas</option>
-              <option value="tidakpuas">Tidak Puas</option>
-            </select>
-          </th>
-          @endif
+          <th>Feedback</th> 
+          <th>{{ $aspirasi->feedback}}</th>
           @endif
         </tr>
         
@@ -69,11 +64,11 @@
 
       </table>
       @if($aspirasi->status == 'selesai' && $aspirasi->feedback == null)
-        <button type="submit" class="btn btn-success">Submit</button>
-        <a href="/" class="btn btn-primary">Kembali</a>
+      <a href="/" class="btn btn-primary"><i class="fa fa-chevron-left" aria-hidden="true"></i>&nbsp;Kembali</a>
+        <button type="submit" class="btn btn-success"><i class="fa fa-sign-in" aria-hidden="true"></i>&nbsp;Submit</button>
       @else
 
-      <a href="/" class="btn btn-primary">Kembali</a>
+      <a href="/" class="btn btn-primary"><i class="fa fa-chevron-left" aria-hidden="true"></i>&nbsp;Kembali</a>
 
       @endif
       </form>   

@@ -9,7 +9,7 @@ class Kategori extends Model
     protected $table = "kategori";
     
     protected $guarded = [];
-    
+
     public function aspirasi()
     {
         return $this->hasMany(Aspirasi::class);

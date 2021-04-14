@@ -31,16 +31,19 @@
 
     
     <!-- Custom styles for this template -->
+<link rel="stylesheet" href="font-awesome/css/font-awesome.min.css" />
+
   </head>
   <body>
     
 
       @section('content')
       <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-        <h1 class="h2">Kategori</h1>
+        <h1 class="h2">
+            <i class="fa fa-tags" aria-hidden="true"></i> Kategori</h1>
         <div class="btn-toolbar mb-2 mb-md-0">
           <div class="btn-group me-2">
-            <a href="{{ route('kategori.create') }}" class="btn btn-success">&nbsp;Tambah</a>
+            <a href="{{ route('kategori.create') }}" class="btn btn-success"><i class="fa fa-plus-circle" aria-hidden="true">&nbsp;Tambah</i></a>
           </div>
         
         </div>
@@ -57,22 +60,30 @@
             </tr>
           </thead>
           <tbody align="center">
+            @if($kategori->count() > 0)
               @foreach($kategori as $k)
             <tr>
                 <td>{{ $no++ }}</td>
                 <td>{{ $k->id }}</td>
                 <td>{{ $k->ket_kategori }}</td>
                 <td>
-                  <a href="{{ route('kategori.edit',$k->id) }}" class="btn btn-warning">Edit</a>
+                  <a href="{{ route('kategori.edit',$k->id) }}" class="btn btn-warning">
+                    <i class="fa fa-pencil"></i></a>
+                   
 
                   <form action="{{ route('kategori.destroy',$k->id)}}" style="display:inline" method="POST">
                     @csrf
                     @method('DELETE')
-                  <button type="submit" class="btn btn-danger">Delete</button>
+                  <button type="submit" class="btn btn-danger" onclick="return confirm('Apakah Anda Yakin Ingin Menghapusnya ?')"><i class="fa fa-trash" aria-hidden="true"></i></button>
                   </form>
                 </td>
             </tr>
             @endforeach
+            @else
+            <tr>
+                <td colspan="6" style="color:red;"><b>Tidak Ada Data</b></td>
+            </tr>
+            @endif
           </tbody>
         </table>
       </div>

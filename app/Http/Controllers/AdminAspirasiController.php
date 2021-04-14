@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Aspirasi;
 use App\Kategori;
-
+use Alert;
 class AdminAspirasiController extends Controller
 {
     /**
@@ -18,98 +18,73 @@ class AdminAspirasiController extends Controller
         
         $aspirasi = Aspirasi::all();
         $kategori = Kategori::all();
+
+
         if($request->tanggal != null && $request->cari == true){
             $tanggal = $request->tanggal;
+            
             $aspirasi = Aspirasi::where('created_at','LIKE',"$tanggal%")->get();
-            if($request->kategori != null){
+            
+            
+            if($request->kategori != "null"){
                 $aspirasi = Aspirasi::where('created_at','LIKE',"$tanggal%")->where('kategori_id',$request->kategori)->get();
                
+            }elseif($request->penduduk != "null")
+            {
+                $aspirasi = Aspirasi::where('created_at','LIKE',"$tanggal%")->where('kategori_id',$request->kategori)->where('id', $request->penduduk)->get()->get();
             }
-        }elseif($request->kategori != null && $request->cari == true ){
+
+        }elseif($request->kategori != "null" && $request->cari == true ){
             $aspirasi = Aspirasi::where('kategori_id',$request->kategori)->get();
+
+        }elseif($request->penduduk != "null" && $request->cari == true){
+            $aspirasi = Aspirasi::where('id', $request->penduduk)->get();
+
+        }
+     
+        elseif($request->bulan != "null" && $request->cari == true){
+           
+            $aspirasi = Aspirasi::where('created_at','LIKE',"_____$request->bulan%")->get();
+            }
+
+
+        // END LOGIC Filter
+
+        if($aspirasi->count() == 0 && ($kategori == "null" && $tanggal == null)){
+            $aspirasi = Aspirasi::all();
+        }
+
+        if($aspirasi->count() == 0 && ($kategori == "null" &&  $tanggal == null)){
+            $aspirasis = Aspirasi::all();
         }
         
         $no = 1;
         return view('aspirasiadmin.index',compact('aspirasi','no','kategori'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function edit($id)
     {   
         $aspirasi = Aspirasi::find($id);
         return view('aspirasiadmin.edit',compact('aspirasi'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+
     public function update(Request $request, $id)
     {
         $aspirasi = Aspirasi::find($id);
         $aspirasi->status = $request->status;
         $aspirasi->save();
-        return redirect()->route('adminaspirasi.index');
+        return redirect('/admin/aspirasi');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+
     public function destroy($id)
     {
         $aspirasi = Aspirasi::find($id);
         $aspirasi->delete();
-        return redirect()->route('adminaspirasi.index');
-    }
-
-    public function history()
-    {
-        $aspirasi = Aspirasi::where('status','selesai')->get();
-        $no = 1;
-        return view('history.index',compact('aspirasi','no'));
+        return redirect('/admin/aspirasi');
     }
 
     public function feedback($id)
@@ -117,5 +92,12 @@ class AdminAspirasiController extends Controller
         $aspirasi = Aspirasi::find($id);
         $no = 1;
         return view('aspirasiadmin.feedback',compact('aspirasi','no'));
+    }
+
+    public function history()
+    {
+        $aspirasi = Aspirasi::where('status','selesai')->get();
+        $no = 1;
+        return view('aspirasiadmin.history',compact('aspirasi','no'));
     }
 }

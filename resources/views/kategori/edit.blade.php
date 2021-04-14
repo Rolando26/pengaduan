@@ -65,8 +65,8 @@
         </div>
         
         <br>
-        <button type="submit" class="btn btn-primary">Submit</button>
-        <a href="{{ route('kategori.index') }}" class="btn btn-info">Kembali</a>
+        <a href="{{ route('kategori.index') }}" class="btn btn-info" style="color:white;"><i class="fa fa-chevron-left" aria-hidden="true"></i>&nbsp;Kembali</a>
+        <button type="submit" class="btn btn-success"><i class="fa fa-sign-in" aria-hidden="true"></i>&nbsp;Submit</button>
       </form>
 
 

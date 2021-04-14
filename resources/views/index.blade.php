@@ -10,7 +10,7 @@
 
         <form action="/aspirasi/cari" method="POST" class='form-inline float-right mb-3'>
             @csrf
-                <input type="text" class="form-control" placeholder='Cari NIK Atau ID..' name='search'>
+                <input type="text" class="form-control" placeholder='Cari ID..' name='search'>
             <br>
                 <button type="submit" class="btn btn-primary btn-lg" style="padding:7px 25px; 7px; 25px;">Cari</button>
         </form>

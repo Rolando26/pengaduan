@@ -1,4 +1,5 @@
 @extends('layouts.header')
+
 <!doctype html>
 <html lang="en">
   <head>
@@ -37,7 +38,7 @@
 
       @section('content')
       <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-        <h1 class="h2">Kategori</h1>
+        <h1 class="h2"> <i class="fa fa-tags"></i> Kategori</h1>
         <div class="btn-toolbar mb-2 mb-md-0">
           <div class="btn-group me-2">
            
@@ -56,18 +57,20 @@
                   </ul>
               </div>
              @endif
-      <form action="{{ route('kategori.store') }}" method="POST">
-          @csrf
-        
-        <div class="form-group">
-          <label for="ket_kategori">Keterangan Kategori</label>
-          <input type="text" class="form-control" placeholder="Masukkan Kategori" name="ket_kategori">
-        </div>
-        
-        <br>
-        <button type="submit" class="btn btn-primary">Submit</button>
-        <a href="{{ route('kategori.index') }}" class="btn btn-info">Kembali</a>
-      </form>
+    
+
+             <form action="{{ route('kategori.store') }}" method="POST">
+                @csrf
+              
+              <div class="form-group">
+                <label for="ket_kategori">Keterangan Kategori</label>
+                <input type="text" class="form-control" placeholder="Masukkan Kategori" name="ket_kategori">
+              </div>
+              
+              <br>
+              <a href="{{ route('kategori.index') }}" class="btn btn-info" style="color:white;"><i class="fa fa-chevron-left" aria-hidden="true"></i>&nbsp;Kembali</a>
+              <button type="submit" class="btn btn-success"><i class="fa fa-sign-in" aria-hidden="true"></i>&nbsp;Submit</button>
+            </form>
 
 
     <script src="{{ asset('assets')}}/js/bootstrap.bundle.min.js"></script>

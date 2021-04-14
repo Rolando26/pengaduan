@@ -10,9 +10,13 @@
 
 
     
-
     <!-- Bootstrap core CSS -->
 <link href="{{ asset('assets') }}/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
+  <!-- Ionicons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
+  <link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/carousel/">
+
     @stack('style')
     <style>
 
@@ -93,17 +97,22 @@
   <body class="d-flex h-100 text-center text-white bg-dark">
     
 <div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
+  
   <header class="mb-auto">
     <div>
       
-      <h3 class="float-md-start mb-3"> <a href="{{ route('login') }}" style="text-decoration:none; color: #ffffff;">PelaporanMasyarakat</h3> </a>
-      <nav class="nav nav-masthead justify-content-center float-md-end">
-        <a class="nav-link active" aria-current="page" href="/">Home</a>
+      <h3 class="float-md-end mb-3"> <a href="{{ route('login') }}" style="text-decoration:none; color: #ffffff;">PelaporanMasyarakat</h3> </a>
+      <nav class="nav nav-masthead justify-content-center float-md-start">
+        <a class="nav-link {{ Request::is('/') ? 'active' : '' }}" aria-current="page" href="/" style="margin-left:30px;">Home</a>
+        <a class="nav-link  {{ Request::is('about') ? 'active' : '' }}" aria-current="page" href="/about" style="margin-left:30px;">About US</a>
+        <a class="nav-link {{ Request::is('historyaspirasi') ? 'active' : '' }}" aria-current="page" href="/historyaspirasi" style="margin-left:30px;">History</a>
+       
      
       </nav>
     </div>
   </header>
-
+  
+  @include('sweetalert::alert')
   @yield('content')
 
 

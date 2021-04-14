@@ -200,38 +200,41 @@ body {
 
   </style>
 
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
+  <!-- Ionicons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
 
 
 <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
     <div>
       <ul class="nav flex-column">
 
-   
+        @include('sweetalert::alert')
 
         <li class="nav-item">
           <a class="nav-link" href="{{ route('kategori.index')}}">
-            <span data-feather="file"></span>
+            <i class="fa fa-list" aria-hidden="true"></i>
             Kategori
           </a>
         </li>
 
         <li class="nav-item">
           <a class="nav-link" href="{{ route('adminaspirasi.index')}}">
-            <span data-feather="shopping-cart"></span>
+            <i class="fa fa-commenting-o" aria-hidden="true"></i>
             Aspirasi 
           </a>
         </li>
 
         <li class="nav-item">
           <a class="nav-link" href="{{ route('users.index')}}">
-            <span data-feather="users"></span>
+            <i class="fa fa-user" aria-hidden="true"></i>
             Admin
           </a>
         </li>
 
         <li class="nav-item">
           <a class="nav-link" href="{{ url('history') }}">
-            <span data-feather="bar-chart-2"></span>
+            <i class="fa fa-history" aria-hidden="true"></i>
             History Aspirasi
           </a>
         </li>
@@ -248,7 +251,7 @@ body {
     <div class="row">
   
       <header class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
-        <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3" href="#">Aplikasi Pengaduan</a>
+        <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3" href="/dashboard"><i class="fa fa-rocket" aria-hidden="true"></i> Aplikasi Pengaduan</a>
         <button class="navbar-toggler position-absolute d-md-none collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -257,7 +260,7 @@ body {
           <li class="nav-item text-nowrap">
             <form action="{{ url('logout') }} " method="POST">
               @csrf
-              <button type="submit" class="btn btn-default btn-flat" style="color:whitesmoke">Sign Out</button>
+              <button type="submit" class="btn btn-default btn-flat" style="color:whitesmoke"><i class="fa fa-sign-out" aria-hidden="true"></i>&nbsp;Sign Out</button>
             </form>
           </li>
         </ul>

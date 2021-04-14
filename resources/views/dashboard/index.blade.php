@@ -49,14 +49,11 @@
           <div class="btn-group me-2">
           
           </div>
-          <button type="button" class="btn btn-sm btn-outline-secondary dropdown-toggle">
-            <span data-feather="calendar"></span>
-
-          </button>
+    
         </div>
       </div>
 
-      Selamat Datang !
+      Selamat Datang Di Dashboard!
 
     <script src="{{ asset('assets')}}/js/bootstrap.bundle.min.js"></script>
 

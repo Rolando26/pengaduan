@@ -10,9 +10,9 @@
 
         <form action="/aspirasi/cari" method="POST" class='form-inline float-right mb-3'>
             @csrf
-                <input type="text" class="form-control" placeholder='Cari NIK Atau ID..' name='search'>
+                <input type="text" class="form-control" placeholder='Cari ID..' name='search'>
                 <br>
-                <b style="color:red;"><strong>NIK Atau ID Yang Anda Cari Tidak Ada .</strong></b>
+                <b style="color:red;"><strong>ID Yang Anda Cari Tidak Ada .</strong></b>
             <br>
             <br>
                 <button type="submit" class="btn btn-primary btn-lg" style="padding:7px 25px; 7px; 25px;">Cari</button>

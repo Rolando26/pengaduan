@@ -5,7 +5,7 @@ use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
-
+use Alert;
 class UserController extends Controller
 {
     /**
@@ -49,35 +49,13 @@ class UserController extends Controller
         $users->username = $request->username;
         $users->password = \Hash::make($request->password);
         $users->save();
-
+        Alert::success('Berhasil','User Berhasil Ditambahkan');
         return redirect('users');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function edit($id)
     {
-        $users = User::find($id);
-        if($users->id == Auth::user()->id)
-        {
-            return back()->with('error','Tidak Bisa Menghapus Diri Sendiri');
-        }
-        return view('users.edit',compact('users'));
+        
     }
 
     /**
@@ -89,14 +67,12 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $users = User::find($id);
-        $users->name = $request->name;
-        $users->username = $request->username;
-        if(!empty($request->password)) {
-            $users->password = Hash::make($request->password);
-        }
-        $users->save();
-        return redirect()->route('users.index');
+   
+    }
+
+    public function show($id)
+    {
+        
     }
 
     /**
@@ -110,9 +86,11 @@ class UserController extends Controller
         $users = User::find($id);
         if($users->id == Auth::user()->id)
         {
-            return back()->with('error','Tidak Bisa Menghapus Diri Sendiri');
+            Alert::error('Gagal','Anda Tidak Dapat Menghapus Diri Sendiri');
+            return back();
         }
         $users->delete();
-        return redirect('users')->with(['success','Data Berhasil Dihapus']);
+        Alert::success('Berhasil','User Berhasil Di hapus');
+        return redirect('users');
     }
 }

@@ -33,14 +33,14 @@
     <!-- Custom styles for this template -->
   </head>
   <body>
-    
+    @include('templates/feedback')
 
       @section('content')
       <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-        <h1 class="h2">User Admin</h1>
+        <h1 class="h2"><i class="fa fa-user" aria-hidden="true"></i> User Admin</h1>
         <div class="btn-toolbar mb-2 mb-md-0">
           <div class="btn-group me-2">
-            <a href="{{ route('users.create') }}" class="btn btn-success">&nbsp;Tambah</a>
+            <a href="{{ route('users.create') }}" class="btn btn-success"><i class="fa fa-plus-circle" aria-hidden="true"></i>&nbsp;Tambah</a>
           </div>
         
         </div>
@@ -65,12 +65,11 @@
                 <td>{{ $k->username }}</td>
           
                 <td>
-                  <a href="{{ route('users.edit',$k->id) }}" class="btn btn-warning">Edit</a>
-
                   <form action="{{ route('users.destroy',$k->id)}}" style="display:inline" method="POST">
                     @csrf
                     @method('DELETE')
-                  <button type="submit" class="btn btn-danger">Delete</button>
+                    <button type="submit" class="btn btn-danger" onclick="return confirm('Apakah Anda Yakin Ingin Menghapusnya ?')"><i class="fa fa-trash" aria-hidden="true"></i></button>
+                  </form>
                   </form>
                 </td>
             </tr>

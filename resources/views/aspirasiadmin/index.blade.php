@@ -37,7 +37,8 @@
 
       @section('content')
       <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-        <h1 class="h2">Aspirasi Admin</h1>
+        <h1 class="h2">
+          <i class="fa fa-commenting-o" aria-hidden="true"></i> Aspirasi Admin </h1>
         <div class="btn-toolbar mb-2 mb-md-0">
           <div class="btn-group me-2">
          
@@ -50,6 +51,7 @@
           <thead>
             <tr align="center">
               <th>No</th>
+              <th>ID</th>
               <th>NIK</th>
               <th>Status</th>
               <th>Kategori</th>
@@ -65,6 +67,8 @@
 
             <tr>
                     <td>{{ $no++ }} </td>
+                
+                    <td>{{ $a->id }} </td>
                     <td>{{ $a->nik }} </td>
                     <td>
                       @if($a->status == 'menunggu')
@@ -83,12 +87,12 @@
                     <td>{{ $a->aspirasi }} </td>
               
                 <td>
-                  <a href="{{ route('aspirasiadmin.edit',$a->id) }}" class="btn btn-warning">Edit</a>
-                  <a href="{{ route('feedback',$a->id) }}" class="btn btn-primary">Detail</a>
+                    <a href="{{ route('feedback',$a->id) }}" class="btn btn-primary"><i class="fa fa-info" style="padding-left:2px;padding-right:2px;"></i></a>
+                    <a href="{{ route('aspirasiadmin.edit',$a->id) }}" class="btn btn-warning"><i class="fa fa-pencil"></i></a>
                   <form action="{{ route('aspirasiadmin.destroy',$a->id)}}" style="display:inline" method="POST">
                     @csrf
                     @method('DELETE')
-                  <button type="submit" class="btn btn-danger">Delete</button>
+                    <button type="submit" class="btn btn-danger" onclick="return confirm('Apakah Anda Yakin Ingin Menghapusnya ?')"><i class="fa fa-trash" aria-hidden="true"></i></button>
                   </form>
                 </td>              
             </tr>
@@ -106,18 +110,45 @@
               
               <input type="hidden" value=true name="cari">
                 <div class="form-group">
-                   <label>Per Tanggal</label>
+                   <label>Tanggal</label>
                 <input type="date" class="form-control" name="tanggal">
                 <br>
 
                 <label>Per Kategori</label>
                 <select name="kategori" class="form-control">
+                  <option value="null">-Pilih Kategori-</option>
                   @foreach($kategori as $k)
                   <option value="{{$k->id}}">{{$k->ket_kategori}}</option>
                   @endforeach
                 </select>
                 <br>
-                <button type="submit" class="btn btn-success">Submit</button>
+
+                <label for="penduduk">Penduduk</label>
+                <select name="penduduk" class="form-control">
+                    <option value="null">-Pilih Penduduk-</option>
+                    @foreach($aspirasi as $a)
+                    <option value="{{$a->id}}">{{$a->nik}}</option>
+                    @endforeach
+                </select>
+                <br>
+                <label for="Bulan">Bulan</label>
+                <select name="bulan" class="form-control">
+                    <option value="null">-Pilih Bulan-</option>
+                    <option value="01">January</option>
+                    <option value="02">Februari</option>
+                    <option value="03">Maret</option>
+                    <option value="04">April</option>
+                    <option value="05">Mei</option>
+                    <option value="06">Juni</option>
+                    <option value="07">Juli</option>
+                    <option value="08">Agustus</option>
+                    <option value="09">September</option>
+                    <option value="10">Oktober</option>
+                    <option value="11">November</option>
+                    <option value="12">Desember</option>
+                </select>
+                <br>
+                <button type="submit" class="btn btn-success"><i class="fa fa-sign-in" aria-hidden="true"></i>&nbsp;Submit</button>
                 
                 </div>
             </table>
